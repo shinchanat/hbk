@@ -15,11 +15,15 @@ class Html:
 ## development testing section
 
 if __name__ == "__main__":
-    from Button import Button
+    from button import Button
+    from input import Input
 
-    button = Button(bgcolor = "orange",text = "PRESS")
-    html = Html(button.self_generate())
-    css = button.style_generate()
+    field = Input(radius = (20,)*4,bgcolor = "skyblue",color = "black",pos = ("200px","200px"),
+                  placeholder = "Enter your name : ",
+                  padding = (30,)*4)
+    
+    html = Html(field.self_generate())
+    css = field.style_generate()
     print(css)
 
     with open("file.html","w") as htmlfile:
