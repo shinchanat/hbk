@@ -1,2 +1,2 @@
-# Hyperlinked-bilang-kit (hbk)
-Hyperlink-bilang-kit python frontend web framework.
+# Hyperlink-bilang-kit (hbk)
+Hyperlink-bilang-kit python frontend framework.
