@@ -2,11 +2,11 @@ class Input:
     
     count = 0
     
-    def __init__(self,name = "input-field", radius = (10,)*4,  placeholder = "Enter your text here ..",
-                 border = { "color" : "black","width" : "1px","type" : "solid"},size = (None,)*2,
+    def __init__(self,name = "input-field", radius = (0,)*4,  placeholder = "Enter your text here ..",
+                 border = { "color" : "none","width" : "1px","type" : "solid"},size = (None,)*2,
                  padding = {"top":"10px","right":"10px","bottom":"10px","left":"10px"},
                  margin = {"left":"10px","right":"10px","top":"10px","bottom":"10px"},
-                 bgColor = "white",posMode = "relative", pos = ("0px","0px"),color = "gray",
+                 bgColor = "transparent",posMode = "relative", pos = ("0px","0px"),color = "black",
                  mode  = "text", fontSize = "10px", fontFamily = "Courier New",length = 8,
                  ):
         
@@ -35,16 +35,17 @@ class Input:
                  "margin : "+f"{self.margin.get('top','10px')} {self.margin.get('right','10px')} {self.margin.get('bottom','10px')} {self.margin.get('left','10px')};\n\t"
                  "background-color : " + f"{self.bgcolor};\n\t"
                  "border : "+f"{self.border['color']};\n\t"
-                 "border-style : "+f"{self.border['type']};\n\t"
+                 "border-bottom : "+f"1px solid silver;\n\t"
                  "border-width : "+f"{self.border['width']};\n\t"
-                 "color : " + f"{self.color};\n\t"+
+                 "color : " + f"{self.color};\n\t"
                  "height : " + f"{self.size[1]}px;\n\t"
                  "width : " + f"{self.size[0]}px;\n\t"
                  "position : "+f"{self.posMode};\n\t"
-                 "top : "+f"{self.pos[0]};\n\t"
-                 "left : "+f"{self.pos[1]};\n\t"
+                 "top : "+f"{self.pos[1]};\n\t"
+                 "left : "+f"{self.pos[0]};\n\t"
                  "font-size : "+f"{self.fontSize};\n\t"
-                 "font-family : "+f"'{self.fontFamily}';\n"+"}")
+                 "font-family : "+f"'{self.fontFamily}';\n\t"
+                 "pointer-event : none ;\n"+"}")
 
     def function_grenerate(self):
 

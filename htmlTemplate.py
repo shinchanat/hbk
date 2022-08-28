@@ -1,44 +1,32 @@
 class Html:
     
-    def __init__(self,root = None):
+    def __init__(self,filename,root = None):
+        self.root = root
+        self.filename = filename
         self.template = (
             f"""<html>\n\t<head>\n\t\t<title></title>\n\t\
-        <link rel = "stylesheet" href = "index.css">\n\t</head>\
-            \n<body>\n\t{root.self_generate()}\n</body>\n</html>"""
+        <link rel = "stylesheet" href = "{self.filename.replace('html','css')}">\n\t</head>\
+            \n<body style = 'display : flex; flex : 1fr'>\n\t{root.self_generate()}\n</body>\n</html>"""
             )
 
+    def save(self):
+        with open(f'{self.filename}','w') as htmlfile:
+            htmlfile.write(self.template)
 
-
-
-
-
+        with open(f'{self.filename.replace(".html",".css")}','w') as cssfile:
+            cssfile.write(self.root.style_generate())
 
 ## development testing section
 
 if __name__ == "__main__":
-    from button import Button
-    from input import Input
+
     from boxlayout import BoxLayout
+    from input import Input
+    from button import Button
 
-    root = BoxLayout()
-    layout = BoxLayout(xAlign = "flex-start",bgColor = "red")
-    layout2 = BoxLayout(alignBy = "column",bgColor = "green")
-    inp = Input( bgColor = "orange" ,mode = "password")
-    btn = Button()
-    layout.addComponent([inp,btn])
-    layout2.addComponent([inp,btn])
-    root.addComponent([layout,layout2])
-
-    html = Html(root)
-
-
-    with open("file.html","w") as htmlfile:
-        
-        htmlfile.write(html.template)
-
-    with open("index.css","w") as cssfile:
-
-        cssfile.write(root.style_generate())
-
+    box = BoxLayout(alignY = "flex-end")
+    box.addComponent([Button(text = "press".upper(),size = ("90s%",None))])
+    root = Html("t.html",box)
+    root.save()
 ##    print(layout.self_generate())
 ##    print(layout.style_generate())
