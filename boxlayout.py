@@ -2,12 +2,12 @@ class BoxLayout:
 
     count = 0
 
-    def __init__(self,name = "boxlayout", bgColor = "transparent",xAlign = "center",yAlign = "center",
-                 size = (None,)*2 , posMode = "relative" , pos = (None,)*2, alignBy = "row"):
+    def __init__(self,name = "boxlayout", bgColor = "transparent",alignX = "none",alignY = "none",
+                 size = ("100%","100%")*2 , posMode = "relative" , pos = (None,)*2, alignBy = "column"):
 
         self.name       = name+'-'+str(BoxLayout.count) if name == "boxlayout" else name
-        self.xAlign     = xAlign
-        self.yAlign     = yAlign
+        self.alignX     = alignX
+        self.alignY     = alignY
         self.bgcolor    = bgColor
         self.size       = size
         self.posMode    = posMode
@@ -29,7 +29,7 @@ class BoxLayout:
 
         self.__layout = f"\n<div class = '{self.name}'>\n\t"+'\n'.join([ comp.self_generate() for comp in component])+"\n</div>"
 
-        return self.__layout
+        #return self.__layout
 
 
     def style_generate(self):
@@ -39,10 +39,11 @@ class BoxLayout:
             "display : " + "flex;\n\t"
             "flex : 1fr;\n\t"
             "flex-direction : "+f"{self.alignBy};\n\t"
-            "justify-content : " + f"{self.xAlign};\n\t"
+            "align-items : "+f"{self.alignY if self.alignBy == 'row' else self.alignX};\n\t"
+            "justify-content : " + f"{self.alignX if self.alignBy == 'row' else self.alignY};\n\t"
             "background-color : " + f"{self.bgcolor};\n\t"
-            "height : " + f"{self.size[0]};\n\t"
-            "width : "+f"{self.size[-1]};\n\t"
+            "height : " + f"{self.size[-1]};\n\t"
+            "width : "+f"{self.size[0]};\n\t"
             "position : "+f"{self.posMode};\n\t"
             "top : "+f"{self.pos[0]};\n\t"
             "left : "+f"{self.pos[1]};\n"
