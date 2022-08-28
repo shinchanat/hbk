@@ -1,7 +1,7 @@
 class Button:
 
     count = 0
-    def __init__(self,name = "button",text = "BUTTON",padding = {"top":"10px","right":"10px","bottom":"10px","left":"10px"},
+    def __init__(self,name = "button",text = "Press",padding = {"top":"10px","right":"10px","bottom":"10px","left":"10px"},
                  color = "white" , bgColor = "blue",size = ("10%",)*2,radius = 10,posMode = "relative",
                  pos = ("0px","0px"),fontSize = "100%",fontFamily = "Courier New", elevation = "10px",
                  margin = {"left":"10px","right":"10px","top":"10px","bottom":"10px"}):
