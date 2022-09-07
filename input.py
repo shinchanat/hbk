@@ -2,21 +2,19 @@ class Input:
     
     count = 0
     
-    def __init__(self,name = "input-field", radius = (0,)*4,  placeholder = "Enter your text here ..",
-                 border = { "color" : "none","width" : "1px","type" : "solid"},size = (None,)*2,
-                 padding = {"top":"10px","right":"10px","bottom":"10px","left":"10px"},
-                 margin = {"left":"10px","right":"10px","top":"10px","bottom":"10px"},
-                 bgColor = "transparent",posMode = "relative", pos = ("0px","0px"),color = "black",
-                 mode  = "text", fontSize = "10px", fontFamily = "Courier New",length = 8,
-                 ):
+    def __init__(self,name = "input-field", radius = ['10px']*4,placeHolder = "Enter your text here ..",
+                 border = { "color" : "none","width" : "1px","type" : "solid"},size = ('none',)*2,
+                 padding = ['10px']*4,margin = ['10px']*4,bgColor = "transparent",posMode = "relative",
+                 pos = ['0px']*2,color = "black",mode  = "text", fontSize = "100%",
+                 fontStyle = "Courier New",length = 8):
         
         self.radius = radius
-        self.placeholder = placeholder
+        self.placeHolder = placeHolder
         self.name = name+"-"+str(Input.count) if name == "input-field" else name
         self.padding = padding
         self.size = size
         self.fontSize = fontSize
-        self.fontFamily = fontFamily
+        self.fontStyle = fontStyle
         self.bgcolor = bgColor
         self.color = color
         self.posMode = posMode
@@ -30,32 +28,37 @@ class Input:
     def style_generate(self):
         
         return ( f"\n.{self.name}"+"{\n\t"
-                 "padding :" + f"{self.padding.get('top','10px')} {self.padding.get('right','10px')} {self.padding.get('bottom','10px')} {self.padding.get('left','10px')};\n\t"
-                 "border-radius : "+f"{self.radius[0]}px {self.radius[1]}px {self.radius[2]}px {self.radius[3]}px;\n\t"
-                 "margin : "+f"{self.margin.get('top','10px')} {self.margin.get('right','10px')} {self.margin.get('bottom','10px')} {self.margin.get('left','10px')};\n\t"
-                 "background-color : " + f"{self.bgcolor};\n\t"
-                 "border : "+f"{self.border['color']};\n\t"
-                 "border-bottom : "+f"1px solid silver;\n\t"
-                 "border-width : "+f"{self.border['width']};\n\t"
-                 "color : " + f"{self.color};\n\t"
-                 "height : " + f"{self.size[1]}px;\n\t"
-                 "width : " + f"{self.size[0]}px;\n\t"
-                 "position : "+f"{self.posMode};\n\t"
-                 "top : "+f"{self.pos[1]};\n\t"
-                 "left : "+f"{self.pos[0]};\n\t"
-                 "font-size : "+f"{self.fontSize};\n\t"
-                 "font-family : "+f"'{self.fontFamily}';\n\t"
-                 "pointer-event : none ;\n"+"}")
+                 f"padding : {' '.join(self.padding)};\n\t"
+                 f"border-radius : { ' '.join(self.radius)};\n\t"
+                 f"margin : {' '.join(self.margin)};\n\t"
+                 f"background-color : {self.bgcolor};\n\t"
+                 f"border : {self.border['color']};\n\t"
+                 "border-bottom : 1px solid silver;\n\t"
+                 f"border-width : {self.border['width']};\n\t"
+                 f"color : {self.color};\n\t"
+                 f"height : {self.size[1]}px;\n\t"
+                 f"width : {self.size[0]}px;\n\t"
+                 f"position : {self.posMode};\n\t"
+                 f"top : {self.pos[1]};\n\t"
+                 f"left : {self.pos[0]};\n\t"
+                 "outline : none;\n\t"
+                 f"font-size : {self.fontSize};\n\t"
+                 f"font-family : '{self.fontStyle}';\n"+"}\n\n")
 
     def function_grenerate(self):
 
         return f"""\nfunction onClick_{self.name.replace('-','_')}();"""
 
     def self_generate(self):
-        if self.mode != "password":
-            return f"""\n<input class = "{self.name}" type = "{self.mode}" placeholder = "{self.placeholder}">"""
+        mode = ('password','radio','date','text','checkbox','week','month')
+        if not self.mode in mode:
+            raise Exception('Invalid mode "{self.mode}" for input exception.')
         
-        return f"""\n<input class = "{self.name}" type = "{self.mode}" placeholder = "{self.placeholder}" maxlength = {self.length}>"""
+        if self.mode != "password":
+            
+            return f"""\n<input class = "{self.name}" type = "{self.mode}" placeholder = "{self.placeHolder}">"""
+        
+        return f"""\n<input class = "{self.name}" type = "{self.mode}" placeholder = "{self.placeHolder}" maxlength = {self.length}>"""
 
 
 if __name__ == "__main__":

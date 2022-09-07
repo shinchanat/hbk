@@ -2,36 +2,40 @@ class Label:
 
     count = 0
 
-    def __init__(self,name = "label",text = "hyperlinked-bilang-kit",fontSize = "100%",
-                 fontFamily = 'Courier New',color = "black",bgColor = "transparent",
-                 pos = ("0px","0px"),posMode = "relative",elevation = 'none'):
+    def __init__(self,name = "label",text = "Text",fontSize = "100%",
+                 fontStyle = 'Courier New',color = "black",bgColor = "transparent",
+                 align = {'x':'none','y':'none'},posMode = "relative",elevation = 'none',
+                 padding = ['0px']*4,margin = ['0px']*4):
 
         self.name = name+'-'+str(Label.count) if name == "label" else name
         self.text = text
-        self.pos = pos
+        self.align = align
+        self.margin = margin
+        self.padding = padding
         self.posMode = posMode
         self.fontSize = fontSize
-        self.fontFamily = fontFamily
+        self.fontStyle = fontStyle
         self.color = color
         self.bgColor = bgColor
         self.elevation = elevation
-        self.count += 1
+        Label.count += 1
 
     def style_generate(self):
 
         return (f".{self.name}"+"{\n\t"
-                "color : "+f"{self.color};\n\t"
-                "font-size : "+f"{self.fontSize};\n\t"
-                "font-family :"+f"{self.fontFamily};\n\t"
+                f"color : {self.color};\n\t"
+                f"text-align : {self.align.get('x','none')};\n\t"
+                f"font-size : {self.fontSize};\n\t"
+                f"font-family : {self.fontStyle};\n\t"
+                f"font-weight : bold;\n\t"
                 "display : inline-block;\n\t"
-                "position : "+"{self.posMode};\n\t"
-                "padding : 10px;\n\t"
-                "margin-left : 10px;\n\t "
-                "margin-right : 10px;\n\t"
-                "top : "+f"{self.pos[1]};\n\t"
-                "left : "+f"{self.pos[0]};\n\t"
-                "text-shadow : 0px 0px "+f"{self.elevation} grey;\n\t"
-                "background-color : "+f"{self.bgColor};\n"
+                f"position : {self.posMode};\n\t"
+                f"padding  : {' '.join(self.padding)};\n\t"
+                f"margin : {' '.join(self.margin)};\n\t"
+                f"top : {self.align.get('y','none')};\n\t"
+                f"left : {self.align.get('x','none')};\n\t"
+                f"text-shadow : 0px 0px {self.elevation} grey;\n\t"
+                f"background-color : {self.bgColor};\n"
                 "}")
 
     def self_generate(self):
