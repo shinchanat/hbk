@@ -16,6 +16,7 @@
      
      loginpage = Screen()
      loginpage.addComponent([
+           Label('We Are From HbkCommunity.'), 
            Input('Username :'),
            Input('Password :'),
            Button('Login'),
