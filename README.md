@@ -11,7 +11,7 @@
     
 ### Example :
 
-     from hbk import 
+     from hbk import *
      
      loginpage = Screen()
      loginpage.addComponent([
