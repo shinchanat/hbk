@@ -6,10 +6,8 @@ class Html:
         self.root = root
         self.filename = filename
         self.template = (
-            f"""<html>\n\t<head>\n\t\t<title></title>\n\t\
-        <link rel = "stylesheet" href = "{self.filename.replace('html','css')}">\n\t</head>\
-            \n<body style = 'display : flex; flex : 1fr; margin : 0px;'>\n\t{root.self_generate()}\n</body>\n</html>"""
-            )
+            f"""<!DOCTYPE html5>\n<html lang = 'en'>\n\t<head>\n\t\t<title></title>\n\t\
+        <link rel = "stylesheet" href = "{self.filename.replace('html','css')}">\n\t</head>"""+self.root.self_generate())
 
     def save(self):
         with open(f'{self.filename}','w') as htmlfile:
@@ -19,27 +17,26 @@ class Html:
             cssfile.write(self.root.style_generate())
 
         webbrowser.open(f'{self.filename}')
+
+
 ## development testing section
 
 if __name__ == "__main__":
 
-    from boxlayout import BoxLayout
-    from input import Input
+    from boxlayout1 import BoxLayout
+    from screen import Screen
     from button import Button
+    from input import Input
     from label import Label
+    from htmltemplate import Html
 
-    layout = BoxLayout(alignY = "center")
-    titlelayout = BoxLayout(alignX = "center",alignY = "center",size = ("100%","10%"))
-    titlelayout.addComponent([Label(text = "We are from pyWeb community.",elevation = "2px")])
-    layout.addComponent(
-        [
-         titlelayout,
-         Input(placeholder = "Username "),
-         Input(placeholder = "Password "),
-         Button(text = "Press",size = ("90s%",None))
-        ]
-    )
+    testingpage = Screen()
+    testingpage.addComponent([
+        BoxLayout([
+            Label("Username :"),
+            Input(),
+            Button()]),
+        Button("Click")
+        ])
 
-    Html('testing.html',layout).save()
-##    print(layout.self_generate())
-##    print(layout.style_generate())
+    Html('testing.html',testingpage).save()

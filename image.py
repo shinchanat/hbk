@@ -1,38 +1,35 @@
+from css_statements import *
+import element_style_generator
+
+
+default_design = {
+    "sizeX" : "width : 50px;\n\t",
+    "radius" : "border-radius : 0px;\n\t",
+    }
+
 class Image: 
     
-    count=0
+    count = 0
 
-    def __init__(self ,source, name ="image",padding = ['0px']*4,pos=["none",]*2,posMode = "relative",radius=["0px"]*4,
-                 margin = ['10px']*4, size = ["100%"]*2):
+    def __init__(self ,source, name ="image",**props):
         
             self.name = name+'-'+str(Image.count) if name =='image' else name
             self.source = source
-            self.padding = padding
-            self.pos = pos
-            self.posMode = posMode
-            self.radius = radius
-            self.margin = margin
-            self.size = size
+            self.props = props
+            self.default_design = default_design
+            Image.count += 1
 
     def style_generate(self):
-        
-        return  (f"\n.{self.name}"+'{\n\t'
-                f"padding : {' '.join(self.padding)};\n\t"
-                f"position : {self.posMode};\n\t"
-                f"left : {self.pos[0]};\n\t"
-                f"top : {self.pos[-1]};\n\t"
-                f"border-radius : {' '.join(self.radius)};\n\t"
-                f"margin : {' '.join(self.margin)};\n\t"
-                f"width : {self.size[0]};\n\t"
-                f"height : {self.size[-1]};\n" '}\n') 
+
+        return element_style_generator.generate(default_design,self)
 
     def self_generate(self):
-        return f"\n<img class = '{self.name}' src = '{self.source}' alt = 'ImageNotFoundError'/>"
+        return f"\n<div style = '{default_design['radius']}'><img class = '{self.name}' src = '{self.source}' alt = 'ImageNotFoundError'/></div>"
     
 
 if __name__=="__main__":
         
-    image=Image(source=r"C:\Users\Harish\Desktop\projects\1.png")
+    image=Image(source=r"C:\Users\Harish\Desktop\projects\src\1.png")
         
     print(image.self_generate())
         
