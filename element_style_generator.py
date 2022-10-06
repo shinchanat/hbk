@@ -25,3 +25,43 @@ def generate(default_design,component):
         css += "}"
         
         return css
+
+def generate_hover(default_design,component):
+
+        css = f".{component.name}:hover""{\n\t"
+    
+        for propTyp , propVal in default_design.items():
+
+            if propTyp not in props_name : # Checks wether the property is defined in 'css_statement.py, 'props_name' is defined in css_statements.py'.
+                print("invalid argument.")
+                break
+            default_design.update({ propTyp :css_statements[propTyp]+str(propVal)+";\n\t"}) # Generates a css { property : value } statement.
+
+        
+        for propTyp , propVal in default_design.items():# generates the css code.
+            
+            css += str(default_design[propTyp])
+                
+        css += "}"
+        
+        return css
+
+def generate_active(default_design,component):
+
+        css = f".{component.name}:active""{\n\t"
+    
+        for propTyp , propVal in default_design.items():
+
+            if propTyp not in props_name : # Checks wether the property is defined in 'css_statement.py, 'props_name' is defined in css_statements.py'.
+                print("invalid argument.")
+                break
+            default_design.update({ propTyp :css_statements[propTyp]+str(propVal)+";\n\t"}) # Generates a css { property : value } statement.
+
+        
+        for propTyp , propVal in default_design.items():# generates the css code.
+            
+            css += str(default_design[propTyp])
+                
+        css += "}"
+        
+        return css

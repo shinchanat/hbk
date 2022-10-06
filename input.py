@@ -1,19 +1,6 @@
 from css_statements import *
 import element_style_generator
 
-
-
-default_design = {
-
-    "bgColor" : "background-color : transparent;\n\t",
-    "padding" : "padding : 15px;\n\t",
-    "border" : "border : none;\n\t",
-    "textSize" : "font-size : 17px;\n\t",
-    "textStyle" : "font-family : 'Courier New';\n\t",
-    "focus" : "outline : none;\n\t",
-    }
-
-
 class Input:
 
     count = 0
@@ -25,11 +12,19 @@ class Input:
         self.placeHolder = placeHolder
         self.mode = mode
         Input.count += 1
-        self.default_design = default_design
+        self.default_design = {
+
+            "bgColor" : "background-color : transparent;\n\t",
+            "padding" : "padding : 15px;\n\t",
+            "border" : "border : none;\n\t",
+            "textSize" : "font-size : 17px;\n\t",
+            "textStyle" : "font-family : 'Courier New';\n\t",
+            "focus" : "outline : none;\n\t",
+        }
 
     def style_generate(self):
 
-        return element_style_generator.generate(default_design,self)
+        return element_style_generator.generate(self.default_design,self)
 
     def self_generate(self):
 
@@ -51,4 +46,6 @@ if __name__ == "__main__":
     test_input = Input(placeHolder='enter your Password : ')
     print(test_input.style_generate())
     print(test_input.self_generate())
+
+    print(Input().style_generate())
 

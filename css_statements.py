@@ -12,7 +12,6 @@ css_statements = {
     "bottomLeftRadius" : "border-bottom-left-radius :",
     "textSize" : "font-size :",
     "textStyle" : "font-family :",
-    "textSize" : "font-size :",
     "textBoldness" : "font-weight :",
     "padding" : "padding : ",
     "paddgingRight" : "padding-right :",
@@ -31,20 +30,20 @@ css_statements = {
     "alignX" : "left :",
     "alignY" : "top :",
     "border" : "border : ",
-    "borderRadius" : "border-radius :",
-    "BorderWidth" : "border-width",
-    "TopWidth" : "border-top-width :",
-    "BottomWidth" : "border-bottom-width :",
-    "RightWidth" : "border-right-width :",
-    "LeftWidth" : "border-left-width :",
+    "borderWidth" : "border-width",
+    "topWidth" : "border-top-width :",
+    "bottomWidth" : "border-bottom-width :",
+    "rightWidth" : "border-right-width :",
+    "leftWidth" : "border-left-width :",
     "margin" : "margin : ",
     "marginRight" : "margin-right : ",
     "marginLeft" : "margin-left : ",
     "marginTop" : "margin-top : ",
     "marginBottom" : "margin-bottom : ",
     "shadow" : "box-shadow : 0px 0px 10px ",
-    
-    
+    "layoutMode" : "display : ",
+    "scrollX" : "overflow-x : ",
+    "scrollY" : "overflow-y : ",
 }
 
 
